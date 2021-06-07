@@ -4,8 +4,10 @@ import {
   applyMiddleware
 } from "redux"
 
+import thunk from 'redux-thunk';
+
 import {connectRouter, routerMiddleware} from 'connected-react-router'
-import { UsersReducer } from "../users/ reducers";
+import { UsersReducer } from "../users/reducers";
 //増えればここが増える。
 export default function createStore(history) {
   return reduxCreateStore(
@@ -15,7 +17,8 @@ export default function createStore(history) {
       //増えればここが増える。
     }),
     applyMiddleware(
-      routerMiddleware(history)
+      routerMiddleware(history),
+      thunk
     )
   )
 }
